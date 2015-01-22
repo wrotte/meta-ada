@@ -10,6 +10,7 @@ SRC_URI = "file://hello.adb file://hello.gpr"
 S = "${WORKDIR}"
 
 do_compile() {
+        export GPR_PROJECT_PATH="${STAGING_LIBDIR}/ada/libhello"
 	${TARGET_PREFIX}gnatmake -p -Phello.gpr
 }
 
@@ -21,4 +22,3 @@ do_install() {
 do_clean() {
 	${TARGET_PREFIX}gnatclean -Phello.gpr
 }
-

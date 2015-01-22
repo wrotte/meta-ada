@@ -2,7 +2,7 @@ DESCRIPTION = "Test Ada layer - Simple library in Ada"
 SECTION = "examples"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-PR = "r0"
+PR = "r3"
 PROVIDES = "libhello"
 
 SRC_URI = "file://libhello.ads file://libhello.adb file://libhello.gpr file://build_libhello.gpr"
@@ -19,11 +19,12 @@ SRC_URI = "file://libhello.ads file://libhello.adb file://libhello.gpr file://bu
 # /usr/lib/libhello.a
 # /usr/lib/libhello.so
 
-PACKAGES = "${PN}-dev"
+PACKAGES = "${PN}-dev ${PN}-staticdev"
 
 #FILES_${PN} = "${bindir}/*"
 
-FILES_${PN}-dev = "${libdir}/* ${libdir}/ada/${PN}/*"
+FILES_${PN}-dev = "${libdir}/ada/${PN}/adalib/*.ali ${libdir}/ada/${PN}/adainclude/* ${libdir}/ada/${PN}/*.gpr"
+FILES_${PN}-staticdev = "${libdir}/ada/${PN}/adalib/*.a"
 
 #FILES_${PN}-dbg = "${bindir}/.debug/*"
 
@@ -50,4 +51,3 @@ do_install() {
 do_clean() {
 	${TARGET_PREFIX}gnatclean -Pbuild_libhello.gpr
 }
-
