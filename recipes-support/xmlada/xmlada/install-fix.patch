@@ -1,0 +1,28 @@
+Index: xmlada-2014-src/Makefile.in
+===================================================================
+--- xmlada-2014-src.orig/Makefile.in	2014-03-25 03:03:23.000000000 -0500
++++ xmlada-2014-src/Makefile.in	2015-01-26 16:41:25.287678266 -0600
+@@ -8,15 +8,15 @@
+ PACKAGE_TARNAME=@PACKAGE_TARNAME@
+ VERSION=@PACKAGE_VERSION@
+ BUILDS_SHARED=@GNAT_BUILDS_SHARED@
+-prefix=@prefix@
+-exec_prefix=@exec_prefix@
+-datadir=@datadir@
+-datarootdir=@datarootdir@
+-bindir=@bindir@
+-libdir=@libdir@
++prefix=$(DESTDIR)@prefix@
++exec_prefix=$(DESTDIR)@exec_prefix@
++datadir=$(DESTDIR)@datadir@
++datarootdir=$(DESTDIR)@datarootdir@
++bindir=$(DESTDIR)@bindir@
++libdir=$(DESTDIR)@libdir@
+ xmllib=${libdir}/xmlada/${LIBRARY_TYPE}/
+-docdir=@docdir@
+-includedir=@includedir@
++docdir=$(DESTDIR)@docdir@
++includedir=$(DESTDIR)@includedir@
+ 
+ # Set a default value (ignored if set in the environment)
+ PROCESSORS?=1
