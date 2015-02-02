@@ -1,0 +1,52 @@
+Index: xmlada-2014-src/Makefile.in
+===================================================================
+--- xmlada-2014-src.orig/Makefile.in
++++ xmlada-2014-src/Makefile.in
+@@ -21,6 +21,7 @@ includedir=$(DESTDIR)@includedir@
+ # Set a default value (ignored if set in the environment)
+ PROCESSORS?=1
+ GNATMAKE=@gnatmake@ -j${PROCESSORS}
++GNAT=@gnat@ -j${PROCESSORS}
+ 
+ # Compiler mode: one of "distrib", "Debug", "Production", "profile", "coverage"
+ MODE=@BUILD_TYPE@
+@@ -157,15 +158,15 @@ install_shared install_relocatable:
+ 	${MAKE} LIBRARY_TYPE=relocatable install_library_type
+ 
+ clean_%: force
+-	-gnat clean -XLIBRARY_TYPE=$* -q -r -Punicode/unicode.gpr
+-	-gnat clean -XLIBRARY_TYPE=$* -q -r -Pinput_sources/input_sources.gpr
+-	-gnat clean -XLIBRARY_TYPE=$* -q -r -Psax/sax.gpr
+-	-gnat clean -XLIBRARY_TYPE=$* -q -r -Pdom/dom.gpr
+-	-gnat clean -XLIBRARY_TYPE=$* -q -r -Pschema/schema.gpr
+-	-gnat clean -XLIBRARY_TYPE=$* -q -Punicode/test/unicode_test.gpr
+-	-gnat clean -XLIBRARY_TYPE=$* -q -Pdom/test/dom_test.gpr
+-	-gnat clean -XLIBRARY_TYPE=$* -q -Psax/test/sax_test.gpr
+-	-gnat clean -XLIBRARY_TYPE=$* -q -Pschema/test/schema_test.gpr
++	-${GNAT} clean -XLIBRARY_TYPE=$* -q -r -Punicode/unicode.gpr
++	-${GNAT} clean -XLIBRARY_TYPE=$* -q -r -Pinput_sources/input_sources.gpr
++	-${GNAT} clean -XLIBRARY_TYPE=$* -q -r -Psax/sax.gpr
++	-${GNAT} clean -XLIBRARY_TYPE=$* -q -r -Pdom/dom.gpr
++	-${GNAT} clean -XLIBRARY_TYPE=$* -q -r -Pschema/schema.gpr
++	-${GNAT} clean -XLIBRARY_TYPE=$* -q -Punicode/test/unicode_test.gpr
++	-${GNAT} clean -XLIBRARY_TYPE=$* -q -Pdom/test/dom_test.gpr
++	-${GNAT} clean -XLIBRARY_TYPE=$* -q -Psax/test/sax_test.gpr
++	-${GNAT} clean -XLIBRARY_TYPE=$* -q -Pschema/test/schema_test.gpr
+ 
+ clean: clean_relocatable clean_static
+ #	cd docs; ${MAKE} -e clean
+Index: xmlada-2014-src/aclocal.m4
+===================================================================
+--- xmlada-2014-src.orig/aclocal.m4
++++ xmlada-2014-src/aclocal.m4
+@@ -65,8 +65,10 @@ Make them the installation default])],
+ 
+    if test "$program_prefix" != NONE; then
+       gnatmake=${program_prefix}gnatmake
++      gnat=${program_prefix}gnat
+    else
+       gnatmake=gnatmake
++      gnat=gnat
+    fi
+ 
+    AC_SUBST(gnatmake)
