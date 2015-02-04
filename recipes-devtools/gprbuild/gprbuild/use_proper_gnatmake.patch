@@ -1,0 +1,30 @@
+Index: gprbuild-gpl-2013-src/Makefile.in
+===================================================================
+--- gprbuild-gpl-2013-src.orig/Makefile.in
++++ gprbuild-gpl-2013-src/Makefile.in
+@@ -55,10 +55,11 @@ dummy:=$(shell $(MKDIR) $(objdir))
+ 
+ PROCESSORS ?= 0
+ 
+-GNATMAKE=gnatmake -p -m -j${PROCESSORS}
++GNATMAKE=@gnatmake@ -p -m -j${PROCESSORS}
+ ifeq ($(strip $(filter-out %vms%,$(host))),)
+ GNATMAKE=${GNATMAKE} -XOS=vms
+ endif
++GNAT=@gnat@
+ 
+ ADA_GEN_SUBDIR=gnat
+ 
+@@ -177,10 +178,10 @@ build_xmlada:
+ 	cd $(srcdir)/xmlada && make LIBRARY_TYPE=static static install_static
+ 
+ clean:
+-	gnat clean -q -r -Pgprbuild
++	${GNAT} clean -q -r -Pgprbuild
+ 
+ distclean:
+-	gnat clean -q -r -Pgprbuild
++	${GNAT} clean -q -r -Pgprbuild
+ 	@${RM} config.log config.status src/gprconfig-sdefault.ads
+ 	@${RM} Makefile
+ 	@${RM} $(objdir)/*

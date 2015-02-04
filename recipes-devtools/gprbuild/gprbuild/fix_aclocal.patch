@@ -1,0 +1,31 @@
+Index: gprbuild-gpl-2013-src/aclocal.m4
+===================================================================
+--- gprbuild-gpl-2013-src.orig/aclocal.m4
++++ gprbuild-gpl-2013-src/aclocal.m4
+@@ -5,6 +5,17 @@ AC_DEFUN(AM_CHECK_XMLADA,
+   xmlada_build_target=
+   xmlada_prj_flags=
+ 
++   if test "$program_prefix" != NONE; then
++      gnatmake=${program_prefix}gnatmake
++      gnat=${program_prefix}gnat
++   else
++      gnatmake=gnatmake
++      gnat=gnat
++   fi
++
++   AC_SUBST(gnatmake)
++   AC_SUBST(gnat)
++
+   if test -d $srcdir/xmlada; then
+      xmlada_build_target=build_xmlada
+      xmlada_prj_flags="-aP$srcdir/xmlada/install/lib/gnat"
+@@ -28,7 +39,7 @@ project Conftest is
+   for Source_Dirs use ();
+ end Conftest;
+ EOF
+-     if gnatmake -P$tmp/conftest.gpr >&AS_MESSAGE_LOG_FD 2>&1; then
++     if ${gnatmake} -P$tmp/conftest.gpr >&AS_MESSAGE_LOG_FD 2>&1; then
+         AC_MSG_RESULT(yes (precompiled))
+      else
+         AC_MSG_RESULT(no)

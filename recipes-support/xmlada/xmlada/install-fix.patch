@@ -1,7 +1,7 @@
-Index: xmlada-2014-src/Makefile.in
+Index: xmlada-2013-src/Makefile.in
 ===================================================================
---- xmlada-2014-src.orig/Makefile.in	2014-03-25 03:03:23.000000000 -0500
-+++ xmlada-2014-src/Makefile.in	2015-01-26 16:41:25.287678266 -0600
+--- xmlada-2013-src.orig/Makefile.in	2013-03-25 03:03:23.000000000 -0500
++++ xmlada-2013-src/Makefile.in	2015-01-26 16:41:25.287678266 -0600
 @@ -8,15 +8,15 @@
  PACKAGE_TARNAME=@PACKAGE_TARNAME@
  VERSION=@PACKAGE_VERSION@

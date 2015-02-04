@@ -1,7 +1,7 @@
-Index: xmlada-2014-src/Makefile.in
+Index: xmlada-2013-src/Makefile.in
 ===================================================================
---- xmlada-2014-src.orig/Makefile.in
-+++ xmlada-2014-src/Makefile.in
+--- xmlada-2013-src.orig/Makefile.in
++++ xmlada-2013-src/Makefile.in
 @@ -21,6 +21,7 @@ includedir=$(DESTDIR)@includedir@
  # Set a default value (ignored if set in the environment)
  PROCESSORS?=1
@@ -35,10 +35,10 @@ Index: xmlada-2014-src/Makefile.in
  
  clean: clean_relocatable clean_static
  #	cd docs; ${MAKE} -e clean
-Index: xmlada-2014-src/aclocal.m4
+Index: xmlada-2013-src/aclocal.m4
 ===================================================================
---- xmlada-2014-src.orig/aclocal.m4
-+++ xmlada-2014-src/aclocal.m4
+--- xmlada-2013-src.orig/aclocal.m4
++++ xmlada-2013-src/aclocal.m4
 @@ -65,8 +65,10 @@ Make them the installation default])],
  
     if test "$program_prefix" != NONE; then

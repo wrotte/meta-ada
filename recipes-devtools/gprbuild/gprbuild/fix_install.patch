@@ -1,0 +1,26 @@
+Index: gprbuild-2013-src/Makefile.in
+===================================================================
+--- gprbuild-2013-src.orig/Makefile.in
++++ gprbuild-2013-src/Makefile.in
+@@ -21,15 +21,15 @@ CP=cp -p
+ MKDIR=mkdir -p
+ BUILD=production
+ 
+-prefix=@prefix@
++prefix=$(DESTDIR)/@prefix@
+ srcdir=@srcdir@
+ root_objdir=@objdir@
+ exec_prefix=@exec_prefix@
+-datarootdir=@datarootdir@
+-datadir=@datadir@
+-bindir=@bindir@
+-libdir=@libdir@
+-libexecdir=@libexecdir@
++datarootdir=$(DESTDIR)@/datarootdir@
++datadir=$(DESTDIR)/@datadir@
++bindir=$(DESTDIR)/@bindir@
++libdir=$(DESTDIR)/@libdir@
++libexecdir=$(DESTDIR)/@libexecdir@
+ docdir=${datadir}/doc/@PACKAGE_TARNAME@
+ 
+ # Are xmlada sources in our source tree
