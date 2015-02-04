@@ -9,6 +9,7 @@ SRC_URI += "file://fix_install.patch"
 SRC_URI[md5sum] = "f97cfb8b1dba3a10a9de1ef4d71117f8"
 SRC_URI[sha256sum] = "7492347462d0a11a3672397a991ce3741347def3a468f850a91a54dfd4349144"
 LICENSE = "GPLv2"
+DEPENDS += "xmlada"
 
 LIC_FILES_CHKSUM="file://COPYING3;md5=d32239bcb673463ab874e80d47fae504"
 PARALLEL_MAKE = ""
@@ -16,10 +17,11 @@ PARALLEL_MAKE = ""
 PR="r6"
 
 S = "${WORKDIR}/${BPN}-${PV}-src"
-export ADA_PROJECT_PATH = "${STAGING_DIR_TARGET}/usr/lib/gnat"
+export ADA_PROJECT_PATH = "${STAGING_DIR_TARGET}/usr/lib/gnat:${prefix}/lib/gnat"
+
 inherit autotools
 
-EXTRA_OECONF += " --program-prefix ${TARGET_PREFIX} "
+EXTRA_OECONF += " --program-prefix '${TARGET_PREFIX}' "
 
 BBCLASSEXTEND = "native nativesdk"
 

@@ -24,7 +24,7 @@ FILES_${PN}-staticdev += "${libdir}/xmlada/static/*.a"
 
 inherit autotools 
 
-EXTRA_OECONF += " --program-prefix ${TARGET_PREFIX} --disable-shared "
+EXTRA_OECONF += " --program-prefix '${TARGET_PREFIX}' --disable-shared "
 BBCLASSEXTEND = "native nativesdk"
 
 do_configure_prepend() {
