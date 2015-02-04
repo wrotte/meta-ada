@@ -1,0 +1,17 @@
+Index: gprbuild-2013-src/Makefile.in
+===================================================================
+--- gprbuild-2013-src.orig/Makefile.in
++++ gprbuild-2013-src/Makefile.in
+@@ -166,10 +166,10 @@ endif
+ 	${INSTALL_PROGRAM} gprlib${EXEXT} ${libexecdir}/gprbuild/
+ 
+ $(objdir)/gprbuild_dummies.o: src/gprbuild_dummies.c
+-	gcc -c -o $@ $<
++	$(CC) -c -o $@ $<
+ 
+ $(objdir)/link.o: gnat/link.c
+-	gcc -c -o $@ $<
++	$(CC) -c -o $@ $<
+ 
+ .PHONY: build_xmlada
+ build_xmlada:
