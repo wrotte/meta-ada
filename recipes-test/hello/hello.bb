@@ -3,22 +3,24 @@ SECTION = "examples"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 DEPENDS = "libhello"
-PR = "r0"
+PR = "r2"
 
-SRC_URI = "file://hello.adb file://hello.gpr"
+SRC_URI = "file://hello.adb file://hello.gpr file://yocto.cgpr"
 
 S = "${WORKDIR}"
 
+export GPR_PROJECT_PATH = "${STAGING_DIR_TARGET}/usr/share/gpr/"
+
+FILES_${PN} += "/usr/share/gpr"
+
 do_compile() {
-        export GPR_PROJECT_PATH="${STAGING_LIBDIR}/ada/libhello"
-	${TARGET_PREFIX}gnatmake -p -Phello.gpr
+	gprbuild -p -Phello.gpr --config=./yocto.cgpr --target=`echo ${TARGET_PREFIX} | sed 's/-$//' `
 }
 
 do_install() {
-	install -d ${D}${bindir}
-	install -m 0755 hello ${D}${bindir}
+        gprinstall -p -Phello.gpr --prefix=${D}/${prefix}
 }
 
 do_clean() {
-	${TARGET_PREFIX}gnatclean -Phello.gpr
+	gprclean -Phello.gpr
 }

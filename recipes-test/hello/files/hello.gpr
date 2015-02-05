@@ -1,4 +1,4 @@
-with "libhello";
+with "LibHello";
 
 project Hello is
    for Source_Dirs use (".");

@@ -18,7 +18,7 @@ PACKAGES += "\
   gnat-dev \
 "
 
-# EXTRA_OECONF += "--enable-libada --enable-shared=libada"
+EXTRA_OECONF += "--enable-libada"
 
 FILES_gnat = "\
   ${bindir}/${TARGET_PREFIX}gnat \
