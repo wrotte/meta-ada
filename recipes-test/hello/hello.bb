@@ -13,6 +13,9 @@ export GPR_PROJECT_PATH = "${STAGING_DIR_TARGET}/usr/share/gpr/"
 
 FILES_${PN} += "/usr/share/gpr"
 
+do_configure() {
+        sed -i -e "s%\@HOST_SYSROOT\@%${STAGING_DIR_NATIVE}%" yocto.cgpr
+}
 do_compile() {
 	gprbuild -p -Phello.gpr --config=./yocto.cgpr --target=`echo ${TARGET_PREFIX} | sed 's/-$//' `
 }

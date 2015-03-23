@@ -8,7 +8,7 @@ configuration project Default is
    for Archive_Builder_Append_Option use ("q");
    for Archive_Indexer  use ("ranlib");
    for Archive_Suffix   use ".a";
-   for Library_Builder  use "/home/wotte/workspace/faceos/yocto/build/tmp-eglibc/sysroots/x86_64-linux/usr/libexec/gprbuild/gprlib";
+   for Library_Builder  use "@HOST_SYSROOT@/usr/lib/gprbuild/gprbuild/gprlib";
    for Library_Support  use "full";
    for Shared_Library_Prefix use "lib";
    for Symbolic_Link_Supported use "true";
@@ -18,24 +18,24 @@ configuration project Default is
 
    for Shared_Library_Suffix use ".so";
    for Library_Auto_Init_Supported use "true";
-   for Library_Partial_Linker use ("/home/wotte/workspace/faceos/yocto/build/tmp-eglibc/sysroots/x86_64-linux/usr/bin/i586-goose-linux/i586-goose-linux-gcc", "-nostdlib", "-Wl,-r", "-o");
+   for Library_Partial_Linker use ("@HOST_SYSROOT@/usr/bin/i586-goose-linux/i586-goose-linux-gcc", "-nostdlib", "-Wl,-r", "-o");
    for Run_Path_Option  use ("-Wl,-z,origin,-rpath,");
    for Run_Path_Origin use "$ORIGIN";
    for Library_Encapsulated_Options use ("-shared", "-static-libgcc");
    for Default_Language use "Ada";
    for Toolchain_Version     ("Ada") use "GNAT 4.8";
-   for Runtime_Library_Dir   ("Ada") use "/home/wotte/workspace/faceos/yocto/build/tmp-eglibc/sysroots/x86_64-linux/usr/lib/i586-goose-linux/gcc/i586-goose-linux/4.8.2//adalib/";
-   for Runtime_Source_Dir    ("Ada") use "/home/wotte/workspace/faceos/yocto/build/tmp-eglibc/sysroots/x86_64-linux/usr/lib/i586-goose-linux/gcc/i586-goose-linux/4.8.2//adainclude/";
+   for Runtime_Library_Dir   ("Ada") use "@HOST_SYSROOT@/usr/lib/i586-goose-linux/gcc/i586-goose-linux/4.8.2//adalib/";
+   for Runtime_Source_Dir    ("Ada") use "@HOST_SYSROOT@/usr/lib/i586-goose-linux/gcc/i586-goose-linux/4.8.2//adainclude/";
    for Library_Encapsulated_Supported use "true";
 
    package Compiler is
-      for Driver              ("C") use "/home/wotte/workspace/faceos/yocto/build/tmp-eglibc/sysroots/x86_64-linux/usr/bin/i586-goose-linux/i586-goose-linux-gcc";
+      for Driver              ("C") use "@HOST_SYSROOT@/usr/bin/i586-goose-linux/i586-goose-linux-gcc";
       for Leading_Required_Switches   ("C") use
          Compiler'Leading_Required_Switches ("C") & ("-c", "-x", "c");
       for Include_Path        ("C") use "CPATH";
       for Dependency_Switches ("C") use ("-MMD", "-MF", "");
       for PIC_Option ("C") use ("-fPIC");
-      for Driver                   ("Ada") use "/home/wotte/workspace/faceos/yocto/build/tmp-eglibc/sysroots/x86_64-linux/usr/bin/i586-goose-linux/i586-goose-linux-gcc";
+      for Driver                   ("Ada") use "@HOST_SYSROOT@/usr/bin/i586-goose-linux/i586-goose-linux-gcc";
       for Language_Kind            ("Ada") use "unit_based";
       for Dependency_Kind          ("Ada") use "ALI_File";
       for Leading_Required_Switches        ("Ada") use
@@ -82,9 +82,9 @@ configuration project Default is
    package Binder is
       for Objects_Path_File     ("Ada") use "ADA_PRJ_OBJECTS_FILE";
       for Driver         ("Ada") use
-          "/home/wotte/workspace/faceos/yocto/build/tmp-eglibc/sysroots/x86_64-linux/usr/lib/gprbuild/gprbuild/gprbind";
+          "@HOST_SYSROOT@/usr/lib/gprbuild/gprbuild/gprbind";
       for Switches ("Ada") use
-        ("--gnatbind_path=/home/wotte/workspace/faceos/yocto/build/tmp-eglibc/sysroots/x86_64-linux/usr/bin/i586-goose-linux/i586-goose-linux-gnatbind");
+        ("--gnatbind_path=@HOST_SYSROOT@/usr/bin/i586-goose-linux/i586-goose-linux-gnatbind");
    end Binder;
 
    package Linker is
